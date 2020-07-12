@@ -13,7 +13,10 @@ media
 *.csv
 requirements.txt
 my_settings.py
+<<<<<<< HEAD
 db_uploader.py
+=======
+>>>>>>> dbac424... [Fix] migrate models
 *.sql
 new_db.py
 

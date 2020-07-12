@@ -2,7 +2,10 @@ from django.db import models
 
 class FirstCategory(models.Model):
     name = models.CharField(max_length = 100)
+<<<<<<< HEAD
     image_url = models.URLField(max_length = 300, null=True)
+=======
+>>>>>>> dbac424... [Fix] migrate models
 
     class Meta:
         db_table = 'first_categories'
@@ -19,7 +22,10 @@ class ThirdCategory(models.Model):
     name            = models.CharField(max_length = 100)
     image_url       = models.URLField(max_length = 2000)
     campaign        = models.ForeignKey('account.Campaign', on_delete=models.SET_NULL, null=True)
+<<<<<<< HEAD
     is_popular      = models.BooleanField(default=False)
+=======
+>>>>>>> dbac424... [Fix] migrate models
 
     class Meta:
         db_table = 'third_categories'
