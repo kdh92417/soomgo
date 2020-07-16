@@ -25,7 +25,6 @@ class ProviderInfo(models.Model):
     created_at                     = models.DateTimeField(auto_now_add = True)
     provider_info_third_category   = models.ManyToManyField('category.ThirdCategory',
                 through = 'category.ProviderInfoThirdCategory',
-<<<<<<< HEAD
                 related_name='category_provider')
     order                          = models.ManyToManyField('order.Order',
                 through = 'order.ProviderInfoOrder',
@@ -33,15 +32,6 @@ class ProviderInfo(models.Model):
     payment                        = models.ManyToManyField('Payment',
                 through = 'providerInfoPayment',
                 related_name='payment_provider')
-=======
-                related_name='info_category')
-    order                          = models.ManyToManyField('order.Order', 
-                through = 'order.ProviderInfoOrder',
-                related_name='provider_order')
-    payment                        = models.ManyToManyField('Payment', 
-                through = 'providerInfoPayment', 
-                related_name='provider_payment')
->>>>>>> dbac424... [Fix] migrate models
 
     class Meta:
         db_table = 'provider_infos'
@@ -95,11 +85,7 @@ class SubImages(models.Model):
     image_url     = models.URLField(max_length = 2000)
 
     class Meta:
-<<<<<<< HEAD
         db_table  = 'sub_images'
-=======
-        db_table = 'sub_images'
->>>>>>> dbac424... [Fix] migrate models
 
 class ProfileImage(models.Model):
     provider_info = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null = True)
@@ -117,11 +103,7 @@ class Time(models.Model):
 
 class ProviderTime(models.Model):
     time_id     = models.ForeignKey('Time', on_delete=models.SET_NULL, null = True)
-<<<<<<< HEAD
     provider    = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null=True)
-=======
-    provider_id = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null=True)
->>>>>>> dbac424... [Fix] migrate models
 
 class Profile(models.Model):
     provider_info = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null= True)
@@ -136,11 +118,7 @@ class Review(models.Model):
     account       = models.ForeignKey('Account', on_delete=models.SET_NULL, null= True)
     score         = models.DecimalField(max_digits=2, decimal_places=1)
     comment       = models.CharField(max_length = 3000)
-<<<<<<< HEAD
     created_at    = models.DateTimeField(auto_now_add = True)
-=======
-    created_at    = models.DateTimeField(auto_now = True)
->>>>>>> dbac424... [Fix] migrate models
 
     class Meta:
         db_table = 'reviews'
