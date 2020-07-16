@@ -25,13 +25,13 @@ class ProviderInfo(models.Model):
     created_at                     = models.DateTimeField(auto_now_add = True)
     provider_info_third_category   = models.ManyToManyField('category.ThirdCategory',
                 through = 'category.ProviderInfoThirdCategory',
-                related_name='info_category')
+                related_name='category_provider')
     order                          = models.ManyToManyField('order.Order',
                 through = 'order.ProviderInfoOrder',
-                related_name='provider_order')
+                related_name='order_provider')
     payment                        = models.ManyToManyField('Payment',
                 through = 'providerInfoPayment',
-                related_name='provider_payment')
+                related_name='payment_provider')
 
     class Meta:
         db_table = 'provider_infos'
@@ -103,7 +103,7 @@ class Time(models.Model):
 
 class ProviderTime(models.Model):
     time_id     = models.ForeignKey('Time', on_delete=models.SET_NULL, null = True)
-    provider_id = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null=True)
+    provider    = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null=True)
 
 class Profile(models.Model):
     provider_info = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null= True)
