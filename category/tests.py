@@ -55,7 +55,7 @@ class JustTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), result)
         
-    def test_totallist_get_not_found():
+    def test_totallist_get_not_found(self):
         client = Client()
         response = client.get('/categor?category=main', content_type = 'application/json')
         self.assertEqual(response.status_code, 404)
