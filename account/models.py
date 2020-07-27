@@ -13,10 +13,12 @@ class Account(models.Model):
 
 class ProviderInfo(models.Model):
     name                           = models.CharField(max_length = 100, default = '')
+    email                          = models.EmailField(max_length = 200, default = '')
+    password                       = models.CharField(max_length = 200, default = '')
     gender                         = models.ForeignKey('Gender', on_delete=models.SET_NULL, null = True)
     phone_number                   = models.CharField(max_length = 50, default='01000000000')
-    career                         = models.IntegerField()
-    employee                       = models.IntegerField()
+    career                         = models.IntegerField(default=1)
+    employee                       = models.IntegerField(default=1)
     is_business                    = models.BooleanField(default = False)
     is_identity                    = models.BooleanField(default = False)
     is_certificate                 = models.BooleanField(default = False)
@@ -25,13 +27,13 @@ class ProviderInfo(models.Model):
     created_at                     = models.DateTimeField(auto_now_add = True)
     provider_info_third_category   = models.ManyToManyField('category.ThirdCategory',
                 through = 'category.ProviderInfoThirdCategory',
-                related_name='category_provider')
+                related_name='info_category')
     order                          = models.ManyToManyField('order.Order',
                 through = 'order.ProviderInfoOrder',
-                related_name='order_provider')
+                related_name='provider_order')
     payment                        = models.ManyToManyField('Payment',
                 through = 'providerInfoPayment',
-                related_name='payment_provider')
+                related_name='provider_payment')
 
     class Meta:
         db_table = 'provider_infos'
@@ -41,8 +43,8 @@ class Address(models.Model):
     si         = models.ForeignKey('Si', on_delete=models.SET_NULL, null = True)
     gu         = models.ForeignKey('Gu', on_delete=models.SET_NULL, null = True)
     dong       = models.ForeignKey('Dong', on_delete=models.SET_NULL, null = True)
-    x_position = models.DecimalField(max_digits=22, decimal_places=16)
-    y_position = models.DecimalField(max_digits=22, decimal_places=16)
+    x_position = models.DecimalField(max_digits=22, decimal_places=16, null = True)
+    y_position = models.DecimalField(max_digits=22, decimal_places=16, null = True)
 
     class Meta:
         db_table = 'addresses'
@@ -102,8 +104,8 @@ class Time(models.Model):
         db_table = 'times'
 
 class ProviderTime(models.Model):
-    time_id     = models.ForeignKey('Time', on_delete=models.SET_NULL, null = True)
-    provider    = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null=True)
+    time     = models.ForeignKey('Time', on_delete=models.SET_NULL, null = True)
+    provider = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null=True)
 
 class Profile(models.Model):
     provider_info = models.ForeignKey('ProviderInfo', on_delete=models.SET_NULL, null= True)
@@ -133,4 +135,4 @@ class Campaign(models.Model):
     name = models.CharField(max_length = 100)
 
     class Meta:
-        db_table = 'campaigns'
+        db_table = 'campaings'

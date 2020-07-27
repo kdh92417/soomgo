@@ -47,8 +47,8 @@ class TypeName(models.Model):
         db_table = 'types'
 
 class AnswerType(models.Model):
-    answer_id = models.ForeignKey('Answer', on_delete=models.SET_NULL, null=True)
-    type_id   = models.ForeignKey('TypeName', on_delete=models.SET_NULL, null=True)
+    answer = models.ForeignKey('Answer', on_delete=models.SET_NULL, null=True)
+    answer_type   = models.ForeignKey('TypeName', on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'answer_types'
